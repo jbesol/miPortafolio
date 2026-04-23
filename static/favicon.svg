@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Antennas -->
+  <line x1="36" y1="26" x2="24" y2="8" stroke="#f97316" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="64" y1="26" x2="76" y2="8" stroke="#f97316" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Head (dome) -->
+  <path d="M18,52 A32,32 0 0,1 82,52 L82,74 Q82,80 76,80 L24,80 Q18,80 18,74 Z" fill="#f97316"/>
+  <!-- Eyes -->
+  <circle cx="38" cy="56" r="5.5" fill="#0a0a0b"/>
+  <circle cx="62" cy="56" r="5.5" fill="#0a0a0b"/>
+</svg>
