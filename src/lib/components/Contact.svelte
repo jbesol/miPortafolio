@@ -2,11 +2,18 @@
 	import { fadeUp } from '$lib/animate.js';
 
 	const links = [
-		{ label: 'GitHub', href: 'https://github.com/' },
+		{ label: 'GitHub', href: 'https://github.com/jbesol' },
 		{ label: 'LinkedIn', href: 'https://linkedin.com/in/' }
 	];
 
-	let hovered = $state(false);
+	const EMAIL = 'Jbellosolano@gmail.com';
+	let copied = $state(false);
+
+	async function copyEmail() {
+		await navigator.clipboard.writeText(EMAIL);
+		copied = true;
+		setTimeout(() => (copied = false), 2000);
+	}
 </script>
 
 <section id="contacto" class="py-32 px-6 relative">
@@ -51,24 +58,34 @@
 
 			<!-- Right: email CTA -->
 			<div>
-				<a href="mailto:Jbellosolano@gmail.com"
-					onmouseenter={() => (hovered = true)}
-					onmouseleave={() => (hovered = false)}
-					class="group block w-full border border-white/8 rounded-2xl p-8 relative overflow-hidden
-					hover:border-orange-500/30 transition-all duration-300 hover:bg-orange-500/[0.04]">
+				<div class="group block w-full border border-white/8 rounded-2xl p-8 relative overflow-hidden
+					transition-all duration-300 hover:border-orange-500/30 hover:bg-orange-500/[0.04]">
 
 					<div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
 						style="background: radial-gradient(ellipse at center, rgba(249,115,22,0.06) 0%, transparent 70%)">
 					</div>
 
 					<p class="font-mono text-[10px] text-slate-700 tracking-widest uppercase mb-3">Escríbeme</p>
-					<p class="text-white text-lg font-medium group-hover:text-orange-100 transition-colors duration-200">
-						Jbellosolano@gmail.com
+
+					<p class="text-slate-600 text-sm font-mono mb-6 tracking-widest select-none">
+						••••••••••@gmail.com
 					</p>
-					<span class="inline-block mt-4 font-mono text-xs text-slate-600 group-hover:text-orange-400 transition-all duration-300 group-hover:translate-x-1">
-						Enviar →
-					</span>
-				</a>
+
+					<button
+						onclick={copyEmail}
+						class="flex items-center gap-2 px-5 py-2.5 rounded-lg border transition-all duration-300 font-mono text-xs
+							{copied
+								? 'border-orange-500/50 text-orange-400 bg-orange-500/10'
+								: 'border-white/10 text-slate-500 hover:border-orange-500/40 hover:text-orange-400 hover:bg-orange-500/[0.06]'}">
+						{#if copied}
+							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+							Copiado
+						{:else}
+							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+							Copiar email
+						{/if}
+					</button>
+				</div>
 			</div>
 
 		</div>
