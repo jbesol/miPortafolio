@@ -37,7 +37,7 @@
 			<!-- Left -->
 			<div>
 				<p class="text-slate-400 text-lg leading-relaxed mb-10 font-light max-w-sm">
-					Abierto a prácticas, proyectos colaborativos y oportunidades en backend.
+					Disponible para roles en backend, proyectos de software y cualquier oportunidad donde pueda aportar valor real.
 				</p>
 
 				<div class="flex flex-col gap-4">
@@ -59,7 +59,7 @@
 				transition-all duration-300">
 
 				<p class="font-mono text-xs text-slate-600 uppercase tracking-widest mb-3">Email directo</p>
-				<p class="text-slate-300 text-sm font-mono mb-7 tracking-wide">{EMAIL}</p>
+				<p class="text-slate-600 text-sm font-mono mb-7 tracking-wide select-none">jbello·····@gmail.com</p>
 
 				<button onclick={copyEmail}
 					class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border text-xs font-mono transition-all duration-200
