@@ -14,10 +14,9 @@
 		let raf;
 
 		const loop = () => {
-			rx += (tx - rx) * 0.13;
-			ry += (ty - ry) * 0.13;
-			ringX = rx;
-			ringY = ry;
+			rx += (tx - rx) * 0.11;
+			ry += (ty - ry) * 0.11;
+			ringX = rx; ringY = ry;
 			raf = requestAnimationFrame(loop);
 		};
 
@@ -43,30 +42,25 @@
 	});
 </script>
 
-<!-- Ring — sigue con retraso -->
-<div
-	class="pointer-events-none fixed z-[9999] rounded-full border border-orange-400/40
-		transition-[width,height,background-color,border-color,opacity] duration-200"
+<div class="pointer-events-none fixed z-[9999] rounded-full transition-[width,height,border-color,background-color,opacity] duration-200"
 	style="
 		left: {ringX}px; top: {ringY}px;
-		width: {hovering ? '42px' : '26px'};
-		height: {hovering ? '42px' : '26px'};
+		width: {hovering ? '38px' : '22px'};
+		height: {hovering ? '38px' : '22px'};
 		transform: translate(-50%, -50%);
-		background: {hovering ? 'rgba(249,115,22,0.08)' : 'transparent'};
-		border-color: {hovering ? 'rgba(249,115,22,0.7)' : 'rgba(249,115,22,0.35)'};
+		border: 1px solid {hovering ? 'rgba(59,130,246,0.65)' : 'rgba(148,163,184,0.2)'};
+		background: {hovering ? 'rgba(59,130,246,0.06)' : 'transparent'};
 		opacity: {visible ? 1 : 0};
 	">
 </div>
 
-<!-- Dot — sigue instantáneo -->
-<div
-	class="pointer-events-none fixed z-[9999] rounded-full bg-orange-400
-		transition-[width,height,opacity] duration-150"
+<div class="pointer-events-none fixed z-[9999] rounded-full transition-[width,height,opacity] duration-100"
 	style="
 		left: {dotX}px; top: {dotY}px;
-		width: {hovering ? '3px' : '5px'};
-		height: {hovering ? '3px' : '5px'};
+		width: {hovering ? '3px' : '4px'};
+		height: {hovering ? '3px' : '4px'};
 		transform: translate(-50%, -50%);
+		background: rgba(148,163,184,{hovering ? '0.5' : '0.7'});
 		opacity: {visible ? 1 : 0};
 	">
 </div>

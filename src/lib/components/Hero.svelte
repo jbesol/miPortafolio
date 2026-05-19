@@ -2,130 +2,91 @@
 	import { onMount } from 'svelte';
 
 	let v = $state(false);
-	let nameText = $state('');
-	let nameReady = $state(false);
-	const FULL_NAME = 'Juan David\nBello';
 
 	onMount(() => {
-		requestAnimationFrame(() =>
-			setTimeout(() => {
-				v = true;
-				scrambleName();
-			}, 80)
-		);
+		requestAnimationFrame(() => setTimeout(() => (v = true), 60));
 	});
 
-	function scrambleName() {
-		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
-		const lines = FULL_NAME.split('\n');
-		const flat = FULL_NAME.replace('\n', ' ');
-		let resolved = 0;
-		let frame = 0;
+	const t = (delay = 0) =>
+		`transition-all duration-700 ease-out [transition-delay:${delay}ms] ${v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`;
 
-		const tick = setInterval(() => {
-			nameText = flat
-				.split('')
-				.map((ch, i) => {
-					if (ch === ' ' && i === flat.indexOf(' ')) return '\n';
-					if (i < resolved) return ch;
-					if (ch === ' ') return ' ';
-					return chars[Math.floor(Math.random() * chars.length)];
-				})
-				.join('');
-
-			frame++;
-			if (frame % 2 === 0 && resolved < flat.length) resolved++;
-			if (resolved >= flat.length) {
-				nameText = FULL_NAME;
-				nameReady = true;
-				clearInterval(tick);
-			}
-		}, 28);
-	}
-
-	const enter = (delay = 0) =>
-		`transition-[opacity,transform] duration-700 ${v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`;
+	const stack = ['Python', 'FastAPI', 'Java', 'PostgreSQL', 'MySQL', 'Docker', 'Git'];
 </script>
 
-<section class="min-h-screen flex items-center justify-center relative overflow-hidden px-6">
+<section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
 
-	<!-- Grid -->
-	<div class="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+	<!-- Dot grid -->
+	<div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle, rgba(148,163,184,0.1) 1px, transparent 1px); background-size: 28px 28px;"></div>
 
-	<!-- Orb -->
-	<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-		style="background: radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%)">
+	<!-- Blue ambient glow -->
+	<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full pointer-events-none"
+		style="background: radial-gradient(ellipse, rgba(59,130,246,0.065) 0%, transparent 65%)">
 	</div>
 
-	<!-- Corner decorations -->
-	<div class="absolute top-8 left-8 w-12 h-12 border-l border-t border-orange-500/20 hidden md:block"></div>
-	<div class="absolute top-8 right-8 w-12 h-12 border-r border-t border-orange-500/20 hidden md:block"></div>
-	<div class="absolute bottom-8 left-8 w-12 h-12 border-l border-b border-orange-500/20 hidden md:block"></div>
-	<div class="absolute bottom-8 right-8 w-12 h-12 border-r border-b border-orange-500/20 hidden md:block"></div>
+	<!-- Corner marks -->
+	<div class="absolute top-8 left-8 w-6 h-6 border-l border-t border-slate-700/50 hidden md:block"></div>
+	<div class="absolute top-8 right-8 w-6 h-6 border-r border-t border-slate-700/50 hidden md:block"></div>
+	<div class="absolute bottom-16 left-8 w-6 h-6 border-l border-b border-slate-700/50 hidden md:block"></div>
+	<div class="absolute bottom-16 right-8 w-6 h-6 border-r border-b border-slate-700/50 hidden md:block"></div>
 
-	<div class="relative text-center max-w-4xl mx-auto">
+	<div class="relative text-center max-w-3xl mx-auto pt-20">
 
-		<!-- Label -->
-		<div class="{enter()} [transition-delay:0ms] flex items-center justify-center gap-3 mb-8">
-			<span class="w-8 h-px bg-orange-500/40"></span>
-			<p class="font-mono text-[11px] tracking-[0.4em] uppercase text-orange-400/70">
-				Backend Developer
-			</p>
-			<span class="w-8 h-px bg-orange-500/40"></span>
+		<!-- Status badge -->
+		<div class="{t(0)} inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/[0.07] bg-white/[0.03] mb-12">
+			<span class="relative flex h-2 w-2 shrink-0">
+				<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+				<span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+			</span>
+			<span class="font-mono text-xs text-slate-500 tracking-wide">Disponible para oportunidades</span>
 		</div>
 
-		<!-- Name with scramble -->
-		<h1 class="{enter()} [transition-delay:100ms] text-6xl md:text-[7.5rem] font-bold leading-[0.9] tracking-tight mb-8"
-			style="white-space: pre-line">
-			{#if nameText}
-				{#each nameText.split('') as ch, i}
-					{#if ch === '\n'}
-						<br/>
-					{:else if i < nameText.indexOf('\n') || nameText.indexOf('\n') === -1}
-						<span class="{nameReady ? 'text-white' : 'text-slate-400'} transition-colors duration-200"
-							style="display:inline-block">{ch === ' ' ? ' ' : ch}</span>
-					{:else}
-						<span class="text-orange-400" style="display:inline-block">{ch === ' ' ? ' ' : ch}</span>
-					{/if}
-				{/each}
-			{:else}
-				<span class="text-slate-700">_</span>
-			{/if}
+		<!-- Name -->
+		<h1 class="{t(150)} font-bold leading-[1.04] tracking-tight mb-5">
+			<span class="block text-5xl md:text-[82px] text-slate-100">Juan David</span>
+			<span class="block text-5xl md:text-[82px] text-blue-400">Bello</span>
 		</h1>
 
+		<!-- Role + location -->
+		<div class="{t(280)} flex items-center justify-center gap-3 mb-8">
+			<span class="font-mono text-sm text-slate-500 tracking-widest uppercase">Backend Developer</span>
+			<span class="w-px h-3.5 bg-slate-700"></span>
+			<span class="font-mono text-sm text-slate-700">Colombia</span>
+		</div>
+
 		<!-- Tagline -->
-		<p class="{enter()} [transition-delay:300ms] text-slate-400 text-lg md:text-xl mb-2 max-w-lg mx-auto leading-relaxed font-light">
-			Entiendo el problema antes de escribir una línea de código.
+		<p class="{t(400)} text-slate-400 text-lg md:text-xl leading-relaxed mb-12 font-light max-w-[520px] mx-auto">
+			Construyo sistemas backend limpios y bien razonados.<br class="hidden md:block"/>
+			Entiendo el problema a fondo antes de escribir una línea de código.
 		</p>
 
+		<!-- CTAs -->
+		<div class="{t(520)} flex items-center justify-center gap-3 mb-14 flex-wrap">
+			<a href="#proyectos"
+				class="px-7 py-3 bg-blue-500 hover:bg-blue-400 text-white text-sm font-medium rounded-lg
+					transition-all duration-200 hover:shadow-[0_0_32px_rgba(59,130,246,0.4)] hover:-translate-y-px active:scale-95">
+				Ver proyectos
+			</a>
+			<a href="#contacto"
+				class="px-7 py-3 border border-white/[0.1] text-slate-400 hover:text-white hover:border-white/[0.18] text-sm font-medium rounded-lg
+					transition-all duration-200 hover:bg-white/[0.03] active:scale-95">
+				Contacto →
+			</a>
+		</div>
+
 		<!-- Stack chips -->
-		<div class="{enter()} [transition-delay:420ms] flex gap-2 justify-center flex-wrap mb-12 mt-5">
-			{#each ['Python', 'Java', 'Spring Boot', 'MySQL'] as tech}
-				<span class="font-mono text-[10px] px-3 py-1 rounded-full border border-white/8 text-slate-600 bg-white/[0.02] tracking-widest">
+		<div class="{t(640)} flex flex-wrap gap-2 justify-center">
+			{#each stack as tech}
+				<span class="font-mono text-[11px] px-3 py-1.5 rounded-full border border-white/[0.07] text-slate-600 bg-white/[0.02] tracking-wide">
 					{tech}
 				</span>
 			{/each}
-		</div>
-
-		<!-- CTAs -->
-		<div class="{enter()} [transition-delay:540ms] flex gap-3 justify-center flex-wrap">
-			<a href="#proyectos"
-				class="group relative px-7 py-3 bg-orange-500 text-white text-sm font-medium rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_32px_rgba(249,115,22,0.4)] hover:scale-[1.02]">
-				<span class="absolute inset-0 bg-orange-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
-				<span class="relative">Ver proyectos</span>
-			</a>
-			<a href="#contacto"
-				class="group px-7 py-3 border border-white/10 text-slate-400 hover:text-white text-sm font-medium rounded-lg transition-all duration-300 hover:border-orange-500/50 hover:bg-orange-500/5">
-				Contacto
-				<span class="inline-block ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
-			</a>
 		</div>
 	</div>
 
 	<!-- Scroll indicator -->
 	<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
-		transition-opacity duration-1000 [transition-delay:1000ms] {v ? 'opacity-100' : 'opacity-0'}">
-		<span class="font-mono text-[9px] text-slate-700 tracking-[0.3em] uppercase">scroll</span>
-		<div class="w-px h-8 bg-gradient-to-b from-transparent via-orange-600/40 to-transparent animate-pulse"></div>
+		transition-opacity duration-1000 [transition-delay:1600ms] {v ? 'opacity-100' : 'opacity-0'}">
+		<span class="font-mono text-[9px] text-slate-700 tracking-[0.25em] uppercase">scroll</span>
+		<div class="w-px h-8 bg-gradient-to-b from-slate-700/60 to-transparent"></div>
 	</div>
 </section>

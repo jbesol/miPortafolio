@@ -11,5 +11,5 @@
 
 <div
 	class="pointer-events-none fixed inset-0 z-10 hidden md:block"
-	style="background: radial-gradient(520px at {x}px {y}px, rgba(249,115,22,0.055), transparent 80%)"
+	style="background: radial-gradient(650px at {x}px {y}px, rgba(59,130,246,0.03), transparent 80%)"
 ></div>

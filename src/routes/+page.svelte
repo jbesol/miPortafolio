@@ -12,7 +12,7 @@
 
 <svelte:head>
 	<title>Juan David Bello — Backend Developer</title>
-	<meta name="description" content="Portafolio de Juan David Bello, estudiante de Ingeniería de Sistemas enfocado en backend con Python, Java y Spring Boot." />
+	<meta name="description" content="Portfolio de Juan David Bello, desarrollador backend enfocado en Python, FastAPI, Java y arquitecturas de microservicios." />
 </svelte:head>
 
 <Cursor />
