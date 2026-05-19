@@ -32,7 +32,8 @@
 			description: 'Sistema fullstack para manejar cupos limitados por periodo con restricciones de cruce entre materias. Tres roles diferenciados: estudiante, docente y administrador.',
 			tags: ['Python', 'MySQL', 'Fullstack'],
 			github: null,
-			demo: null
+			demo: null,
+			preview: '/img/cursos.png'
 		},
 		{
 			num: '05',
@@ -40,7 +41,8 @@
 			description: 'Primer proyecto llevado a producción real. Decisiones de deploy tomadas sin experiencia previa: configuración de servidor, estructura de rutas y diseño responsivo sin frameworks externos.',
 			tags: ['HTML', 'CSS', 'JavaScript'],
 			github: null,
-			demo: null
+			demo: null,
+			preview: '/img/jdejenny.png'
 		}
 	];
 </script>
@@ -84,19 +86,32 @@
 						</div>
 
 						<div class="flex md:flex-col items-center md:items-end gap-4 md:gap-3 shrink-0 md:pt-0.5">
-							{#if p.demo}
-								<a href={p.demo} target="_blank" rel="noopener"
-									class="font-mono text-xs text-amber-500/70 hover:text-amber-400 transition-colors duration-200 whitespace-nowrap">
-									Demo →
-								</a>
-							{/if}
-							{#if p.github}
-								<a href={p.github} target="_blank" rel="noopener"
-									class="font-mono text-xs text-slate-600 hover:text-slate-300 transition-colors duration-200 whitespace-nowrap">
-									GitHub →
-								</a>
+							{#if p.preview}
+								<div class="relative overflow-hidden rounded-lg border border-white/[0.07]
+									w-28 h-[64px] group-hover:w-72 group-hover:h-[162px] hidden md:block shrink-0
+									opacity-40 group-hover:opacity-90 transition-all duration-500 ease-out">
+									<img
+										src={p.preview}
+										alt="Vista previa de {p.title}"
+										class="w-full h-full object-cover object-top"
+									/>
+									<div class="absolute inset-0 bg-gradient-to-t from-[#0F172A]/50 to-transparent"></div>
+								</div>
 							{:else}
-								<span class="font-mono text-xs text-slate-800">Privado</span>
+								{#if p.demo}
+									<a href={p.demo} target="_blank" rel="noopener"
+										class="font-mono text-xs text-amber-500/70 hover:text-amber-400 transition-colors duration-200 whitespace-nowrap">
+										Demo →
+									</a>
+								{/if}
+								{#if p.github}
+									<a href={p.github} target="_blank" rel="noopener"
+										class="font-mono text-xs text-slate-600 hover:text-slate-300 transition-colors duration-200 whitespace-nowrap">
+										GitHub →
+									</a>
+								{:else}
+									<span class="font-mono text-xs text-slate-800">Privado</span>
+								{/if}
 							{/if}
 						</div>
 
