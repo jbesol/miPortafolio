@@ -28,6 +28,15 @@
 		},
 		{
 			num: '04',
+			title: 'Hotel Reservation System',
+			description: 'API REST de gestión hotelera con máquina de estados para reservas (PENDIENTE → CONFIRMADA → CHECKED_IN → CHECKED_OUT) y prevención de double booking mediante query JPQL que detecta solapamiento de intervalos. Controller → Service → Repository estricto; nunca se exponen entities hacia afuera.',
+			tags: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'],
+			github: 'https://github.com/jbesol/Hotel_Reservation',
+			demo: 'https://hotelreservation-production-6038.up.railway.app/api/v1',
+			preview: null
+		},
+		{
+			num: '05',
 			title: 'Gestión de Cursos Electivos',
 			description: 'Sistema fullstack para manejar cupos limitados por periodo con restricciones de cruce entre materias. Tres roles diferenciados: estudiante, docente y administrador.',
 			tags: ['Python', 'MySQL', 'Fullstack'],
@@ -36,7 +45,7 @@
 			preview: '/img/cursos.png'
 		},
 		{
-			num: '05',
+			num: '06',
 			title: 'JdeJenny',
 			description: 'Primer proyecto llevado a producción real. Decisiones de deploy tomadas sin experiencia previa: configuración de servidor, estructura de rutas y diseño responsivo sin frameworks externos.',
 			tags: ['HTML', 'CSS', 'JavaScript'],

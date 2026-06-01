@@ -10,7 +10,7 @@
 	const t = (delay = 0) =>
 		`transition-all duration-700 ease-out [transition-delay:${delay}ms] ${v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`;
 
-	const stack = ['Python', 'FastAPI', 'Java', 'PostgreSQL', 'MySQL', 'Docker', 'Git'];
+	const stack = ['Python', 'FastAPI', 'Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'Git'];
 </script>
 
 <section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">

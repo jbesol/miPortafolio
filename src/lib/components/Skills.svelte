@@ -4,7 +4,7 @@
 	const groups = [
 		{
 			title: 'Backend',
-			items: ['Python', 'FastAPI', 'Java', 'REST APIs', 'PostgreSQL', 'MySQL']
+			items: ['Python', 'FastAPI', 'Java', 'Spring Boot', 'REST APIs', 'PostgreSQL', 'MySQL']
 		},
 		{
 			title: 'Frontend',
