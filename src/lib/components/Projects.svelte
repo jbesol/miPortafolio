@@ -32,8 +32,8 @@
 			description: 'API REST de gestión hotelera con máquina de estados para reservas (PENDIENTE → CONFIRMADA → CHECKED_IN → CHECKED_OUT) y prevención de double booking mediante query JPQL que detecta solapamiento de intervalos. Controller → Service → Repository estricto; nunca se exponen entities hacia afuera.',
 			tags: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'],
 			github: 'https://github.com/jbesol/Hotel_Reservation',
-			demo: 'https://hotelreservation-production-6038.up.railway.app/api/v1',
-			preview: null
+			demo: 'https://reservacionn-hotel.netlify.app/',
+			preview: '/img/hotel.png'
 		},
 		{
 			num: '05',
